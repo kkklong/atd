@@ -18,13 +18,25 @@ CREATE TABLE `user_info`
 INSERT INTO `user_info` (`uid`, `rid`, `nickName`, `account`, `password`, `entryDate`, `notifyEnabled`, `email`)
 VALUES ('1000', '1', '', 'kkklong', '123456', '20221101', '0', 'kkkdark@hotmail.com');
 
+DROP TABLE IF EXISTS `soyal`;
+CREATE TABLE `soyal`
+(
+    `id`          bigint(20)   NOT NULL AUTO_INCREMENT,
+    `uid`         bigint(20)   not null comment '人員id',
+    `account`     varchar(256) not null,
+    `clockAtd`  timestamp    not null comment '打卡時間',
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARSET = utf8;
+
 DROP TABLE IF EXISTS `attendance_record`;
 CREATE TABLE `attendance_record`
 (
     `id`          bigint(20)   NOT NULL AUTO_INCREMENT,
     `uid`         bigint(20)   not null comment '人員id',
     `account`     varchar(256) not null,
-    `clockAtd`  timestamp    not null comment '打卡時間',
+    `morningAtd`  timestamp    not null comment '打卡時間',
+    `eveningAtd`  timestamp    not null comment '打卡時間',
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8;
