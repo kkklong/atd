@@ -108,7 +108,7 @@
                 <form action="/">
                     <input type="date" name="queryDate" id="queryDate">
                     <input type="date" name="queryDate2" id="queryDate2">
-                    <input type="text" id="username" name="username">
+                    <input type="text" id="account" name="account">
                     <input type="submit">
                 </form>
             </li>
@@ -153,8 +153,8 @@
         var datePicker2 = document.getElementById("queryDate2");
         datePicker2.value = queryDate2;
 
-        var usernameText = document.getElementById("username");
-        usernameText.value = username;
+        var usernameText = document.getElementById("account");
+        usernameText.value = account;
     }
 
     window.addEventListener('load', Init, false);

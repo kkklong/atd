@@ -8,7 +8,7 @@ CREATE TABLE `user_info`
     `nickName`varchar(256) null,
     `account` varchar(256) not null,
     `password` varchar(100) not null comment '登录密码',
-    `entryDate` timestamp  not null comment '注册时间',
+    `entryDate` datetime  not null comment '注册时间',
     `notifyEnabled` tinyint(1) DEFAULT '0',
     `email`varchar(255) not null,
 
@@ -24,7 +24,7 @@ CREATE TABLE `soyal`
     `id`          bigint(20)   NOT NULL AUTO_INCREMENT,
     `uid`         bigint(20)   not null comment '人員id',
     `account`     varchar(256) not null,
-    `clockAtd`  timestamp    not null comment '打卡時間',
+    `clockAtd`  datetime    not null comment '打卡時間',
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8;
@@ -35,8 +35,8 @@ CREATE TABLE `attendance_record`
     `id`          bigint(20)   NOT NULL AUTO_INCREMENT,
     `uid`         bigint(20)   not null comment '人員id',
     `account`     varchar(256) not null,
-    `morningAtd`  timestamp    not null comment '打卡時間',
-    `eveningAtd`  timestamp    not null comment '打卡時間',
+    `morningAtd`  datetime    not null comment '打卡時間',
+    `eveningAtd`  datetime    not null comment '打卡時間',
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8;

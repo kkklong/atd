@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +33,7 @@ public class AttendanceController {
     @ResponseBody
     public ModelAndView clockin(@RequestParam("uid") Long uid)throws Exception{
         String account = userService.findAccountByUid(uid);
-        attendanceService.clockIn(uid,account, new Date());
+        attendanceService.clockIn(uid,account, LocalDateTime.now());
         ModelAndView model = new ModelAndView("index");
         return model;
     }
