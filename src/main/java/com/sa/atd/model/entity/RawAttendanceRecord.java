@@ -15,6 +15,6 @@ public class RawAttendanceRecord {
     private Long id;
     private String account;
     private Long uid;
-    private LocalDateTime clockAtd;
+    private LocalDateTime clockatd;
 
 }

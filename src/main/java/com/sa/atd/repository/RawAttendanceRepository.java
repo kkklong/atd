@@ -20,18 +20,17 @@ public interface RawAttendanceRepository extends JpaRepository<RawAttendanceReco
     // 註記為資料異動
     @Modifying
     // 使用標準的SQL Insert語法來寫入資料，冒號+名稱來表示要帶入的參數
-    @Query(value = "INSERT INTO soyal(uid, account, clockAtd)" +
-            " VALUES (:uid, :account, :clockAtd);", nativeQuery = true)
+    @Query(value = "INSERT INTO soyal(uid, account, clockatd)" +
+            " VALUES (:uid, :account, :clockatd);", nativeQuery = true)
     // 回傳Int表示新增的資料筆數，透過@Param("")來對應SQL語法裡面的參數
-    public void save(@Param("uid") Long uid, @Param("account") String account, @Param("clockAtd") LocalDateTime clockAtd);
+    public void save(@Param("uid") Long uid, @Param("account") String account, @Param("clockatd") LocalDateTime clockAtd);
 
 
-    @Query(value = "SELECT new com.sa.atd.model.dto.AttendanceDto(r.account, MIN(r.clockAtd), MAX(r.clockAtd)) " +
-            "FROM RawAttendanceRecord r WHERE r.clockAtd BETWEEN ?1 AND ?2 " +
+    @Query(value = "SELECT new com.sa.atd.model.dto.AttendanceDto(r.account AS account, MIN(r.clockatd) AS morningAtd, MAX(r.clockatd) AS eveningAtd)" +
+            "FROM RawAttendanceRecord r WHERE r.clockatd BETWEEN ?1 AND ?2 " +
             "GROUP BY r.account")
     List<AttendanceDto> findDayAttendance(LocalDateTime timeStart, LocalDateTime timeEnd);
-
-//    @Query("SELECT new com.sa.atd.model.dto.AttendanceDto(r.account, MIN(r.clockAtd), MAX(r.clockAtd)) " +
-//            "FROM RawAttendanceRecord r WHERE dateTime BETWEEN MIN(r.clockAtd) AND MAX(r.clockAtd) and account = r.account")
-//    AttendanceDto findPersonalDayAttendance(LocalDateTime timeStart, LocalDateTime timeEnd, String account);
+    @Query("SELECT new com.sa.atd.model.dto.AttendanceDto(r.account, MIN(r.clockatd), MAX(r.clockatd)) " +
+            "FROM RawAttendanceRecord r WHERE r.clockatd BETWEEN ?1 AND ?2 AND r.account = ?3")
+    AttendanceDto findPersonalDayAttendance(LocalDateTime timeStart, LocalDateTime timeEnd, String account);
 }

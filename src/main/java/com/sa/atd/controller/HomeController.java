@@ -44,26 +44,29 @@ public class HomeController {
         if (endDate == null) {
             endDate = now;
         }
+        if (account == null) {
+            account = "";
+        }
 
         model.addAttribute("queryDate", startDate);
         model.addAttribute("queryDate2", endDate);
         model.addAttribute("username", account);
 
         if (StringUtils.isNotBlank(account)) {
-//            while (startDate.isBefore(endDate)) {
-//                Optional<AttendanceDto> optionalAttendanceDto = attendantService.getRawAttendanceByDateAndUser(startDate.atTime(LocalTime.MIN), startDate.atTime(LocalTime.MAX), account);
-//                if (optionalAttendanceDto.isPresent()) {
-//                    records.add(optionalAttendanceDto.get());
-//                }
-//                startDate = startDate.plusDays(1);
-//            }
-//            //records.add(rawAttendanceRepository.findPersonalDayAttendance(endDate.atTime(LocalTime.MIN), endDate.atTime(LocalTime.MAX), account));
-//            records.addAll(rawAttendanceRepository.findDayAttendance(endDate.atTime(LocalTime.MIN), endDate.atTime(LocalTime.MAX)));
-//        } else {
-//            while (startDate.isBefore(endDate)) {
-//                records.addAll(rawAttendanceRepository.findDayAttendance(startDate.atTime(LocalTime.MIN), startDate.atTime(LocalTime.MAX)));
-//                startDate = startDate.plusDays(1);
-//            }
+            while (startDate.isBefore(endDate)) {
+                Optional<AttendanceDto> optionalAttendanceDto = attendantService.getRawAttendanceByDateAndUser(startDate.atTime(LocalTime.MIN), startDate.atTime(LocalTime.MAX), account);
+                if (optionalAttendanceDto.isPresent()) {
+                    records.add(optionalAttendanceDto.get());
+                }
+                startDate = startDate.plusDays(1);
+            }
+            records.add(rawAttendanceRepository.findPersonalDayAttendance(endDate.atTime(LocalTime.MIN), endDate.atTime(LocalTime.MAX), account));
+            //records.addAll(rawAttendanceRepository.findDayAttendance(endDate.atTime(LocalTime.MIN), endDate.atTime(LocalTime.MAX)));
+        } else {
+            while (startDate.isBefore(endDate)) {
+                records.addAll(rawAttendanceRepository.findDayAttendance(startDate.atTime(LocalTime.MIN), startDate.atTime(LocalTime.MAX)));
+                startDate = startDate.plusDays(1);
+            }
             records.addAll(rawAttendanceRepository.findDayAttendance(endDate.atTime(LocalTime.MIN), endDate.atTime(LocalTime.MAX)));
         }
 

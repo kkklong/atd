@@ -28,23 +28,23 @@ public class AttendanceService {
         rawattendanceRepository.save(uid, account, clockAd);
     }
 
-    public List<AttendanceRecord> findAllAttendance() {
-        return attendanceRecordDao.findAll();
-    }
-    public List<AttendanceRecord> findAllAttendanceBetween(LocalDate begin, LocalDate end) {
-        return attendanceRecordDao.findByMorningAtdBetween(begin.atTime(LocalTime.MIN), end.atTime(LocalTime.MAX));
-    }
+//    public List<AttendanceRecord> findAllAttendance() {
+//        return attendanceRecordDao.findAll();
+//    }
+//    public List<AttendanceRecord> findAllAttendanceBetween(LocalDate begin, LocalDate end) {
+//        return attendanceRecordDao.findByMorningAtdBetween(begin.atTime(LocalTime.MIN), end.atTime(LocalTime.MAX));
+//    }
 
     public List<AttendanceDto> getAttendanceToday() {
         return rawattendanceRepository.findDayAttendance(DateUtil.getTodayStart(), DateUtil.getTodayEnd());
     }
-//    public Optional<AttendanceDto> getRawAttendanceByDateAndUser(LocalDateTime timeStart, LocalDateTime timeEnd, String username) {
-//        AttendanceDto dto = rawattendanceRepository.findPersonalDayAttendance(timeStart, timeEnd, username);
-//        if (dto.getAccount() == null) {
-//            return Optional.empty();
-//        } else {
-//            return Optional.of(dto);
-//        }
-//    }
+    public Optional<AttendanceDto> getRawAttendanceByDateAndUser(LocalDateTime timeStart, LocalDateTime timeEnd, String account) {
+        AttendanceDto dto = rawattendanceRepository.findPersonalDayAttendance(timeStart, timeEnd, account);
+        if (dto.getAccount() == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(dto);
+        }
+    }
 
 }

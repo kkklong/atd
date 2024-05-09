@@ -44,20 +44,20 @@ public class AttendanceController {
     }
 
     //查詢的部分
-    @GetMapping(value = "/all")
-    //@ApiOperation("取得除了當天以外的打卡紀錄(MANAGER)")
-    public List<AttendanceRecord> findBetweenAtd(
-           // @ApiParam(name = "begin", value = "開始日期(yyyy-mm-dd)", required = false)
-            @RequestParam(value = "begin", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate begin,
-           // @ApiParam(name = "end", value = "結束日期(yyyy-mm-dd)", required = false)
-            @RequestParam(value = "end", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end) {
-
-        if (begin != null && end != null) {
-            return attendanceService.findAllAttendanceBetween(begin, end);
-        } else {
-            return attendanceService.findAllAttendance();
-        }
-    }
+//    @GetMapping(value = "/all")
+//    //@ApiOperation("取得除了當天以外的打卡紀錄(MANAGER)")
+//    public List<AttendanceRecord> findBetweenAtd(
+//           // @ApiParam(name = "begin", value = "開始日期(yyyy-mm-dd)", required = false)
+//            @RequestParam(value = "begin", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate begin,
+//           // @ApiParam(name = "end", value = "結束日期(yyyy-mm-dd)", required = false)
+//            @RequestParam(value = "end", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end) {
+//
+//        if (begin != null && end != null) {
+//            return attendanceService.findAllAttendanceBetween(begin, end);
+//        } else {
+//            return attendanceService.findAllAttendance();
+//        }
+//    }
 
 
 }

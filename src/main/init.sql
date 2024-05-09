@@ -24,7 +24,7 @@ CREATE TABLE `soyal`
     `id`          bigint(20)   NOT NULL AUTO_INCREMENT,
     `uid`         bigint(20)   not null comment '人員id',
     `account`     varchar(256) not null,
-    `clockAtd`  datetime    not null comment '打卡時間',
+    `clockatd`  datetime    not null comment '打卡時間',
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8;
