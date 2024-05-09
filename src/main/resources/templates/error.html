@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>輸入錯誤</title>
+
+    <style>
+        *{
+            margin: 0px;
+            font-family:Tahoma,Verdana,Arial;
+        }
+        body{
+            background:#0c061f;
+        }
+
+        form{
+            background:#222222;
+            font-style: initial;
+            color: #fff;
+            align-content: center;
+        }
+
+    </style>
+</head>
+<body>
+<header id="top_header">
+    <h2 id="welcome" style="color: #626085;">打卡輸入系統</h2>
+</header>
+<form th:action="@{/atd/}" method ="get">
+    <br><br/>
+        <h2>輸入錯誤</h2>
+    <p><input type="submit" class="search" value="重新輸入"></p>
+    <br><br/>
+</form>
+
+</body>
+</html>

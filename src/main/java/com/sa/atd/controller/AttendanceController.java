@@ -3,6 +3,7 @@ package com.sa.atd.controller;
 import com.sa.atd.model.entity.AttendanceRecord;
 import com.sa.atd.service.AttendanceService;
 import com.sa.atd.service.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,10 @@ public class AttendanceController {
     @ResponseBody
     public ModelAndView clockin(@RequestParam("uid") Long uid)throws Exception{
         String account = userService.findAccountByUid(uid);
+        if(StringUtils.isBlank(account)){
+            ModelAndView model = new ModelAndView("error");
+            return model;
+        }
         attendanceService.clockIn(uid,account, LocalDateTime.now());
         ModelAndView model = new ModelAndView("index");
         return model;

@@ -1,17 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>打卡輸入</title>
+
+    <style>
+        *{
+            margin: 0px;
+            font-family:Tahoma,Verdana,Arial;
+        }
+        body{
+            background:#0c061f;
+        }
+
+        input[type="number"]:focus{
+            color: rgb(46, 84, 95);
+        }
+
+        form{
+            background:#222222;
+            font-style: initial;
+            color: #fff;
+            align-content: center;
+        }
+        input.search {
+            padding: auto;
+            width: 10em;  height: 2em;
+        }
+    </style>
 </head>
 <body>
-    <form th:action="@{/atd/clockin}" method ="post">
-        員工ID: <input type="number" name="uid"/><br/>
-        員工姓名:<br/>
-        <input type="submit" value="輸入">
+<header id="top_header">
+    <h2 id="welcome" style="color: #626085;">打卡輸入系統</h2>
+</header>
+<form th:action="@{/atd/clockin}" method ="post">
+    <br><br/>
+    員工ID: <input id="uid" type="number" name="uid"/><br/>
+    員工姓名:<br/>
 
-
-    </form>
+    <p><input type="submit" class="search" value="輸入"></p>
+    <br><br/>
+</form>
 
 </body>
 </html>
