@@ -1,10 +1,172 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>HomePage</title>
+    <title>Attendance Manager</title>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <style>
+        *{
+            margin: 0px;
+            font-family:Tahoma,Verdana,Arial;
+        }
+        body{
+            background:#111111;
+        }
+        #skin{
+            /* border:1px solid red; */
+            background:#222222;
+            width:60%;
+            margin:0px auto;
+        }
+        #top_header{
+            /* border:1px solid red; */
+            padding:12px;
+        }
+        #top_menu{
+            /* border:1px solid red; */
+            background:steelblue;
+            color:#fff;
+            /* text-align:center; */
+        }
+        #top_menu li{
+            list-style:none;
+            display:inline-block;
+            padding:8px;
+        }
+        #top_menu ul{
+            padding-left:30px;
+        }
+        #main_section{
+            margin:16px;
+        }
+
+        #message{
+            overflow:auto;
+        }
+
+        #the_footer{
+            clear:both;
+            text-align:center;
+            padding:10px;
+            border-top:1px dashed steelblue;
+        }
+        article{
+            border-radius:5px;
+            border:2px solid steelblue;
+            padding:10px;
+            margin-bottom:10px;
+        }
+
+        #text {
+            border-radius:5px;
+            border:2px solid steelblue;
+            width: 99.5%;
+            min-height: 30px;
+            outline: none;
+        }
+
+        #atd {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #atd td, #atd th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #atd tr:nth-child(even){background-color: #f2f2f2;}
+
+        #atd tr:hover {background-color: #ddd;}
+
+        #atd th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+
+
+
+
+
+
+
+    </style>
 </head>
 <body>
-<h1>Wellcome</h1>>
+<div id="skin">
+    <header id="top_header">
+        <h2 id="welcome">打卡查詢系統</h2>
+    </header>
+    <nav id="top_menu">
+        <ul>
+            <li>
+                <form action="/">
+                    <input type="date" name="queryDate" id="queryDate">
+                    <input type="date" name="queryDate2" id="queryDate2">
+                    <input type="text" id="account" name="account">
+                    <input type="submit">
+                </form>
+            </li>
+        </ul>
+    </nav>
+    <section id="main_section">
+        <article id="message" style="height:765px;">
+            <table id="atd">
+                <tr>
+                    <th>成員</th>
+                    <th>首次打卡</th>
+                    <th>最後打卡</th>
+                </tr>
+                <th:block th:each="record : ${records}">
+                    <tr>
+                        <td th:text="${record.account}">...</td>
+                        <td th:text="${record.morningAtd}">...</td>
+                        <td th:text="${record.eveningAtd}">...</td>
+                    </tr>
+                </th:block>
+            </table>
+        </article>
+    </section>
+
+    <footer id="the_footer">
+    </footer>
+</div>
+
 </body>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var records = /*[[${records}]]*/;
+    var queryDate = /*[[${queryDate}]]*/;
+    var queryDate2 = /*[[${queryDate2}]]*/;
+    var account = /*[[${username}]]*/;
+
+    function Init(){
+        var datePicker = document.getElementById("queryDate");
+        datePicker.value = queryDate;
+
+        var datePicker2 = document.getElementById("queryDate2");
+        datePicker2.value = queryDate2;
+
+        var usernameText = document.getElementById("account");
+        usernameText.value = account;
+    }
+
+    window.addEventListener('load', Init, false);
+
+    /*]]>*/
+
+
+
+
+
+
+
+
+</script>
 </html>

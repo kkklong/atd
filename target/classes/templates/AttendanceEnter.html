@@ -1,17 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <head>
     <meta charset="UTF-8">
     <title>打卡輸入</title>
+
+    <style>
+        *{
+            margin: 0px;
+            font-family:Tahoma,Verdana,Arial;
+        }
+        body{
+            background:#0c061f;
+        }
+
+        input[type="number"]:focus{
+            color: rgb(46, 84, 95);
+        }
+
+        form{
+            padding-block: 1%;
+            background:#222222;
+            font-style: initial;
+            color: #fff;
+            align-content: center;
+        }
+
+    </style>
 </head>
 <body>
-    <form th:action="@{/atd/clockin}" method ="post">
-        員工ID: <input type="number" name="uid"/><br/>
-        員工姓名:<br/>
-        <input type="submit" value="輸入">
+<div th:insert="mainMenu :: header">
+</div>
+<header id="top_header">
+    <div class="head1 text-center">
+        <h2></h2>
+    </div>
 
-
-    </form>
+</header>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h3>打卡輸入系統</h3>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/atd/clockin}" method="post" class="text-center">
+                        <label for="UID: "></label><input type="=number" class="form-control mb-2" id="uid" name="uid" th:value="${uid}" placeholder="uid" required>
+                        <!-- <label for="password"></label><input type="password" class="form-control mb-3" id="password" name="password" placeholder="Password" required> -->
+                        <button type="submit" class="btn btn-primary btn-block">打卡</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
